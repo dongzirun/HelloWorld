@@ -1,3 +1,2 @@
-/GI/GI.Web/bin
-/bin
-/obj
+obj/
+bin/
