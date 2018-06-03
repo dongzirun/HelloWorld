@@ -2,14 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <UserSecretsId>aspnet-GI.Web-2BA3C3F6-71FC-42C3-B3DA-1397151DCBFD</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.2" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0-rc1-final" PrivateAssets="All" />
+    <ProjectReference Include="..\CodeHelper\CodeHelper.csproj" />
+    <ProjectReference Include="..\GI.DTO\GI.DTO.csproj" />
+    <ProjectReference Include="..\GI.IService\GI.IService.csproj" />
+    <ProjectReference Include="..\GI.Service\GI.Service.csproj" />
   </ItemGroup>
 
 </Project>

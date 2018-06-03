@@ -12,7 +12,6 @@ namespace GI.Web.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.message = "let me see";
             return View();
         }
 
