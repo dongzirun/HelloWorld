@@ -14,7 +14,9 @@ namespace GI.Service.Models
         public string Phone { get; set; }
         public bool IsDel { get; set; }
         public DateTime CreateTime { get; set; }
-
-        //   public List<Role> Roles { get; set; }
+        /// <summary>
+        /// 用户对应的角色集合
+        /// </summary>
+        public List<UserRole> UserRoles { get; set; } = new List<UserRole>();
     }
 }

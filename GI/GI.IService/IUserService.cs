@@ -37,5 +37,12 @@ namespace GI.IService
         /// <param name="pageSize">分页页大小</param>
         /// <returns>结果</returns>
         Task<Result> GetUserList(string name, int currentIndex, int pageSize);
+
+        /// <summary>
+        /// 获取用户权限
+        /// </summary>
+        /// <param name="UserId">用户id</param>
+        /// <returns>结果</returns>
+        Task<Result> GetUserRoles(Guid UserId);
     }
 }

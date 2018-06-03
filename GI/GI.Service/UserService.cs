@@ -121,5 +121,26 @@ namespace GI.Service
             return res;
         }
         #endregion
+
+        #region 获取用户权限
+        public async Task<Result> GetUserRoles(Guid UserId)
+        {
+            //var user = await _ctx.User.AsNoTracking().Where(u => u.UserId == UserId)
+            //    .Include(u => u.UserRoles)
+            //    .ThenInclude(u => u.Role)
+            //    .ToListAsync();
+            var user = _ctx.User.Where(u => u.UserId == UserId)
+                .SelectMany(x => x.UserRoles)
+                .Select(r => r.Role)
+                .SelectMany(r => r.RolePermissions)
+                .Select(r => r.Permission);
+
+
+
+            Result res = new Result(true, "success");
+            res.Data = user;
+            return res;
+        }
+        #endregion
     }
 }

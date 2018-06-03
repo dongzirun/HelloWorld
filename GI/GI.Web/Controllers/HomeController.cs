@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GI.Web.Models;
@@ -23,11 +21,13 @@ namespace GI.Web.Controllers
             user.IsDel = false;
             user.Password = CommonHelper.CalcMD5("abc123");
             user.Phone = "17688708658";
-            user.UserId = Guid.NewGuid();
+            user.UserId = new Guid("603522EA-ECC4-49D5-85C0-4105055FAD72");
             user.UserName = "董子润";
             var res = await _userService.Add(user);
             var res2 = await _userService.GetUserInfoById(user.UserId);
             var res3 = await _userService.GetUserList(null, 1, 10);
+            var res4 = await _userService.GetUserRoles(new Guid("603522EA-ECC4-49D5-85C0-4105055FAD72"));
+
             return View();
         }
 

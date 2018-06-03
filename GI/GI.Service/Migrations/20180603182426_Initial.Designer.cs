@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GI.Service.Migrations
 {
     [DbContext(typeof(GIContext))]
-    [Migration("20180603154726_Initial")]
+    [Migration("20180603182426_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,6 +59,21 @@ namespace GI.Service.Migrations
                     b.ToTable("Role");
                 });
 
+            modelBuilder.Entity("GI.Service.Models.RolePermission", b =>
+                {
+                    b.Property<Guid>("RoleId");
+
+                    b.Property<Guid>("PermissionId");
+
+                    b.HasKey("RoleId", "PermissionId");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("RoleId", "PermissionId");
+
+                    b.ToTable("RolePermission");
+                });
+
             modelBuilder.Entity("GI.Service.Models.User", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -76,13 +91,65 @@ namespace GI.Service.Migrations
 
                     b.Property<string>("Phone");
 
+                    b.Property<Guid?>("RoleId");
+
                     b.Property<string>("UserName");
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("RoleId");
+
                     b.HasIndex("UserName");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("GI.Service.Models.UserRole", b =>
+                {
+                    b.Property<Guid>("UserId");
+
+                    b.Property<Guid>("RoleId");
+
+                    b.HasKey("UserId");
+
+                    b.HasAlternateKey("RoleId");
+
+                    b.HasIndex("RoleId", "UserId");
+
+                    b.ToTable("UserRole");
+                });
+
+            modelBuilder.Entity("GI.Service.Models.RolePermission", b =>
+                {
+                    b.HasOne("GI.Service.Models.Permission", "Permission")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("GI.Service.Models.Role", "Role")
+                        .WithMany("RolePermissions")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("GI.Service.Models.User", b =>
+                {
+                    b.HasOne("GI.Service.Models.Role")
+                        .WithMany("users")
+                        .HasForeignKey("RoleId");
+                });
+
+            modelBuilder.Entity("GI.Service.Models.UserRole", b =>
+                {
+                    b.HasOne("GI.Service.Models.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("GI.Service.Models.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

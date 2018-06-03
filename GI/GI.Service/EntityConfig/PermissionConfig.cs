@@ -9,14 +9,16 @@ namespace GI.Service.EntityConfig
 {
     public class PermissionConfig : IEntityTypeConfiguration<Permission>
     {
-        public void Configure(EntityTypeBuilder<Permission> entity)
+        public void Configure(EntityTypeBuilder<Permission> builder)
         {
-            entity.HasKey(e => e.Id);
+            builder.HasKey(e => e.Id);
 
-            entity.HasIndex(e => e.PermissionName);
+            builder.HasIndex(e => e.PermissionName);
 
             // entity.Property(e => e.UserId)
             //    .HasDefaultValueSql("");
+            builder.HasQueryFilter(e => e.IsDel == false);
+
         }
     }
 }

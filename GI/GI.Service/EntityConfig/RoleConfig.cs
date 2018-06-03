@@ -9,14 +9,16 @@ namespace GI.Service.EntityConfig
 {
     public class RoleConfig : IEntityTypeConfiguration<Role>
     {
-        public void Configure(EntityTypeBuilder<Role> entity)
+        public void Configure(EntityTypeBuilder<Role> builder)
         {
-            entity.HasKey(e => e.Id);
+            builder.HasKey(e => e.Id);
 
-            entity.HasIndex(e => e.RoleName);
+            builder.HasIndex(e => e.RoleName);
 
             // entity.Property(e => e.UserId)
             //    .HasDefaultValueSql("");
+            builder.HasQueryFilter(e => e.IsDel == false);
+
         }
     }
 }

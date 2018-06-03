@@ -9,20 +9,13 @@ namespace GI.Service.EntityConfig
 {
     public class UserConfig : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<User> entity)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
-            entity.HasKey(e => e.UserId);
+            builder.HasKey(e => e.UserId);
+            builder.HasIndex(e => e.UserName);
 
-            entity.HasIndex(e => e.UserName);
 
-            
-
-            // entity.Property(e => e.UserId)
-            //    .HasDefaultValueSql("");
-
-            //entity.HasMany(e=>e.Roles)
-            //    .WithMany
-
+            builder.HasQueryFilter(e => e.IsDel == false);
 
         }
     }

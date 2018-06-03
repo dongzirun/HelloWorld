@@ -10,9 +10,15 @@ namespace GI.Service.Models
         public string RoleName { get; set; }
         public bool IsDel { get; set; }
         public DateTime CreateTime { get; set; }
-       // public List<User> users { get; set; }
 
-       // public List<Permission> Permissions { get; set; }
+        /// <summary>
+        /// UserRole对象集合
+        /// </summary>
+        public List<UserRole> UserRoles { get; set; } = new List<UserRole>();
 
+        /// <summary>
+        /// RolePermissionss对象集合
+        /// </summary>
+        public List<RolePermission> RolePermissions { get; set; } = new List<RolePermission>();
     }
 }
