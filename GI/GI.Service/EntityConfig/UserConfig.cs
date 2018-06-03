@@ -15,6 +15,8 @@ namespace GI.Service.EntityConfig
 
             entity.HasIndex(e => e.UserName);
 
+            
+
             // entity.Property(e => e.UserId)
             //    .HasDefaultValueSql("");
 

@@ -15,7 +15,7 @@ namespace GI.Service
     {
         public GIContext _ctx { get; set; }
 
-
+        #region 添加用户
         public async Task<Result> Add(UserDTO dto)
         {
             Result res = new Result(false, "fail");
@@ -47,7 +47,9 @@ namespace GI.Service
 
             return res;
         }
+        #endregion
 
+        #region 删除用户
         public async Task<Result> DelUser(Guid id)
         {
             Result res = new Result(false, "fail");
@@ -63,8 +65,10 @@ namespace GI.Service
             }
             return res;
         }
+        #endregion
 
-        public async Task<Result> GetById(Guid id)
+        #region 根据id获取用户信息
+        public async Task<Result> GetUserInfoById(Guid id)
         {
             Result res = new Result(false, "fail");
             var entity = await _ctx.User.AsNoTracking()
@@ -77,7 +81,9 @@ namespace GI.Service
             }
             return res;
         }
+        #endregion
 
+        #region 获取用户列表
         public async Task<Result> GetUserList(string name, int currentIndex, int pageSize)
         {
 
@@ -96,7 +102,9 @@ namespace GI.Service
             res.Data = sr;
             return res;
         }
+        #endregion
 
+        #region 更新用户信息
         public async Task<Result> UpdateUser(UserDTO dto)
         {
             Result res = new Result(false, "fail");
@@ -112,5 +120,6 @@ namespace GI.Service
             }
             return res;
         }
+        #endregion
     }
 }
